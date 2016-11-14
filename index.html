@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Typhoon Haima Municipality Overview</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/leaflet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/site.css"/>
+        <link rel="stylesheet" type="text/css" href="css/leaflet-grid-graph.css"/>
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/crossfilter.v1.min.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/topojson.v1.min.js"></script> 
+        <script src="js/leaflet-grid-graph.js"></script>
+        <script src="js/papaparse.min.js"></script>  
+    </head>
+    <body class="container">
+        <div class="row">
+            <div class="col-md-11">
+				<div style="display:flex">
+					<img src="images/prc_logo.png" style="height: 80px; width: 80px; top: 50px">
+					<div>
+						<h1>Typhoon Haima Municipality Priority Overview</h1>
+					</div>
+				</div>
+                <p class="titledesc">This dashboard presents a priority ranking of muncipalities hit by Haima. It aims to contribute to the question which municipalities to prioritize given limited resources. This is done both on severity data (houses damaged) and on pre-disaster vulnerability indicators such as poverty. The preselection made by PRC is taken as a given, so only those municipalities are included.</p>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+        <div class="row">           
+            <div class="col-md-5">
+                <div id="sticky-anchor"></div>
+                <div id="map-container"><div id="map"></div></div>
+            </div>
+            <div class="col-md-7">
+                <div id="grid1"></div>
+            </div>
+        </div>
+        </div>
+        <script src='js/site.js'></script>
+    </body>
+</html>

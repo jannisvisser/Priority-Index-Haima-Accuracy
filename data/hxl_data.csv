@@ -1,0 +1,19 @@
+Region;Province;Muncode;Mun_city;Municipality;PRC_initial_selection;Number of Barangay;Population;Population_per_healthfacility;Household_size;"Roof_iron_alu_conc_perc
+";Wall_parly_concrete_perc;poverty_incidence;income_class;P4_perc;vulnerability_index;houses_totaldamage;houses_damage;severity_index;priority_index
+Cordillera Administrative Region (CAR);Apayao;PH148102000;Mun;Conner;1;21;26051;1861;5.4;93%;46%;56%;2;6%;4.8;3%;90%;2.1;3.4
+Cordillera Administrative Region (CAR);Apayao;PH148104000;Mun;Kabugao (Capital);1;21;15537;971;5.0;85%;36%;64%;1;8%;3.9;2%;38%;1.5;2.7
+Cordillera Administrative Region (CAR);Apayao;PH148105000;Mun;Luna;1;22;19063;2118;5.0;79%;61%;33%;2;6%;4.0;2%;95%;1.8;2.9
+Cordillera Administrative Region (CAR);Apayao;PH148107000;Mun;Santa Marcela;1;13;13613;1702;5.0;86%;65%;33%;4;6%;4.4;4%;43%;1.8;3.1
+Cordillera Administrative Region (CAR);Kalinga;PH143201000;Mun;Balbalan;1;14;12195;762;5.7;94%;23%;34%;3;8%;4.8;0%;5%;1.0;2.9
+Cordillera Administrative Region (CAR);Kalinga;PH143213000;City;City of Tabuk (Capital);1;42;110642;2354;5.4;100%;33%;9%;5;1%;1.8;1%;14%;1.2;1.5
+Cordillera Administrative Region (CAR);Kalinga;PH143209000;Mun;Pinukpuk;1;23;32026;1186;5.8;77%;57%;32%;1;3%;2.0;2%;23%;1.4;1.7
+Cordillera Administrative Region (CAR);Kalinga;PH143211000;Mun;Rizal (Liwan);1;14;17038;1549;5.0;92%;69%;9%;4;26%;4.3;14%;66%;2.9;3.6
+Region II (Cagayan Valley);Cagayan;PH021506000;Mun;Baggao;1;48;82782;3942;4.6;95%;57%;22%;1;3%;2.6;5%;31%;1.7;2.2
+Region II (Cagayan Valley);Cagayan;PH021512000;Mun;Enrile;1;22;35834;1991;5.3;83%;71%;20%;3;3%;2.7;21%;100%;4.0;3.3
+Region II (Cagayan Valley);Cagayan;PH021517000;Mun;Lasam;1;30;39135;4348;4.5;97%;66%;14%;3;3%;3.0;2%;29%;1.5;2.2
+Region II (Cagayan Valley);Cagayan;PH021519000;Mun;Penablanca;1;24;48584;1943;5.3;89%;63%;20%;1;3%;1.8;11%;87%;3.0;2.4
+Region II (Cagayan Valley);Cagayan;PH021529000;City;Tuguegarao City (Capital);1;49;153502;3744;5.2;97%;87%;9%;3;1%;1.0;22%;78%;3.7;2.4
+Region II (Cagayan Valley);Isabela;PH023118000;Mun;Delfin Albano (Magsaysay);1;29;26614;2957;4.5;54%;14%;16%;4;1%;4.7;14%;78%;3.1;3.9
+Region II (Cagayan Valley);Isabela;PH023133000;Mun;San Pablo;1;17;25384;2115;5.7;74%;61%;24%;2;5%;3.6;13%;67%;2.9;3.3
+Region II (Cagayan Valley);Isabela;PH023134000;Mun;Santa Maria;1;20;25382;2820;6.0;95%;80%;31%;4;7%;5.0;26%;100%;4.3;4.7
+Region II (Cagayan Valley);Isabela;PH023136000;Mun;Santo Tomas;1;27;23005;5751;5.0;94%;70%;23%;4;4%;4.7;38%;97%;5.0;4.8

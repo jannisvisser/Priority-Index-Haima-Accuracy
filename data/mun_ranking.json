@@ -1,0 +1,25 @@
+[
+["#adm1+name","#adm2+name","#adm3+code","#indicator+muncity","#adm3+name","#indicator+preselection","#indicator+nrbarangays","#indicator+population","#indicator+hospitaldensity","#indicator+hhsize","#indicator+rooftype","#indicator+walltype","#indicator+poverty","#indicator+incomeclass","#indicator+p4hhs","#indicator+vulnerability","#indicator+housedamagetotal","#indicator+housedamage","#indicator+severity","#indicator+priority"],
+["Cordillera Administrative Region (CAR)","Apayao","PH148102000","Mun","Conner","1","21","26051","1861","5.4","0.93","0.46","0.56","2","0.06","4.8","0.03","0.90","2.1","3.4"],
+["Cordillera Administrative Region (CAR)","Apayao","PH148104000","Mun","Kabugao (Capital)","1","21","15537","971","5.0","0.85","0.36","0.64","1","0.08","3.9","0.02","0.38","1.5","2.7"],
+["Cordillera Administrative Region (CAR)","Apayao","PH148105000","Mun","Luna","1","22","19063","2118","5.0","0.79","0.61","0.33","2","0.06","4.0","0.02","0.95","1.8","2.9"],
+["Cordillera Administrative Region (CAR)","Apayao","PH148107000","Mun","Santa Marcela","1","13","13613","1702","5.0","0.86","0.65","0.33","4","0.06","4.4","0.04","0.43","1.8","3.1"],
+["Cordillera Administrative Region (CAR)","Kalinga","PH143201000","Mun","Balbalan","1","14","12195","762","5.7","0.94","0.23","0.34","3","0.08","4.8","0.00","0.05","1.0","2.9"],
+["Cordillera Administrative Region (CAR)","Kalinga","PH143213000","City","City of Tabuk (Capital)","1","42","110642","2354","5.4","1.00","0.33","0.09","5","0.01","1.8","0.01","0.14","1.2","1.5"],
+["Cordillera Administrative Region (CAR)","Kalinga","PH143209000","Mun","Pinukpuk","1","23","32026","1186","5.8","0.77","0.57","0.32","1","0.03","2.0","0.02","0.23","1.4","1.7"],
+["Cordillera Administrative Region (CAR)","Kalinga","PH143211000","Mun","Rizal (Liwan)","1","14","17038","1549","5.0","0.92","0.69","0.09","4","0.26","4.3","0.14","0.66","2.9","3.6"],
+["Region II (Cagayan Valley)","Cagayan","PH021506000","Mun","Baggao","1","48","82782","3942","4.6","0.95","0.57","0.22","1","0.03","2.6","0.05","0.31","1.7","2.2"],
+["Region II (Cagayan Valley)","Cagayan","PH021512000","Mun","Enrile","1","22","35834","1991","5.3","0.83","0.71","0.20","3","0.03","2.7","0.21","1.00","4.0","3.3"],
+["Region II (Cagayan Valley)","Cagayan","PH021517000","Mun","Lasam","1","30","39135","4348","4.5","0.97","0.66","0.14","3","0.03","3.0","0.02","0.29","1.5","2.2"],
+["Region II (Cagayan Valley)","Cagayan","PH021519000","Mun","Penablanca","1","24","48584","1943","5.3","0.89","0.63","0.20","1","0.03","1.8","0.11","0.87","3.0","2.4"],
+["Region II (Cagayan Valley)","Cagayan","PH021529000","City","Tuguegarao City (Capital)","1","49","153502","3744","5.2","0.97","0.87","0.09","3","0.01","1.0","0.22","0.78","3.7","2.4"],
+["Region II (Cagayan Valley)","Isabela","PH023118000","Mun","Delfin Albano (Magsaysay)","1","29","26614","2957","4.5","0.54","0.14","0.16","4","0.01","4.7","0.14","0.78","3.1","3.9"],
+["Region II (Cagayan Valley)","Isabela","PH023133000","Mun","San Pablo","1","17","25384","2115","5.7","0.74","0.61","0.24","2","0.05","3.6","0.13","0.67","2.9","3.3"],
+["Region II (Cagayan Valley)","Isabela","PH023134000","Mun","Santa Maria","1","20","25382","2820","6.0","0.95","0.80","0.31","4","0.07","5.0","0.26","1.00","4.3","4.7"],
+["Region II (Cagayan Valley)","Isabela","PH023136000","Mun","Santo Tomas","1","27","23005","5751","5.0","0.94","0.70","0.23","4","0.04","4.7","0.38","0.97","5.0","4.8"]
+]
+
+
+
+
+
