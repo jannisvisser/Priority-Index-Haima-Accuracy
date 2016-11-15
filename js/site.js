@@ -61,8 +61,23 @@ function generateDashboard(data,geom){
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
 	
 	lg.init();
-	
+
     $("#map").width($("#map").width());
+
+
+    //sort table and color map by priority
+    //////////////////////////////////////
+
+
+    var newdata = [];
+    data.forEach(function(d){
+        newdata.push({'key':d['#adm3+code'],'value':d['#indicator+priority']});
+    });
+    map.colorMap(newdata,priority);
+    grid1._update(data,grid1.columns(),priority,'#adm3+name');
+
+    //////////////////////////////////////
+
 
     var g = d3.select('#grid1').select('svg').select('g').append('g');
 
