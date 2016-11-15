@@ -135,7 +135,7 @@ var lg =  {
                 };
 
             this._info.update = function (name) {
-                this._div.innerHTML = (name ? name: 'Hover a country for details');
+                this._div.innerHTML = (name ? name: 'Hover for details');
             };
 
             this._info.addTo(map);
@@ -187,11 +187,19 @@ var lg =  {
                 return Number(dn);
             });
 
+			var min = d3.min(data,function(d){
+                if(isNaN(d.value)){
+                    dn=0;
+                } else {
+                    dn=d.value
+                }
+                return Number(dn);
+            });
             data.forEach(function(d,i){
                 if(column._valueAccessor(d.value)==null||isNaN(column._valueAccessor(d.value))||column._valueAccessor(d.value)===''){
                     d3.selectAll('.dashgeom'+d.key).attr('fill','#cccccc').attr('fill-opacity',0.8);
                 } else {                        
-                    var c = column._colorAccessor(d.value,i,max);
+                    var c = column._colorAccessor(d.value,i,min,max);
                     d3.selectAll('.dashgeom'+d.key).attr('fill',column._colors[c]).attr('fill-opacity',0.8);
                 }
             });
@@ -282,12 +290,17 @@ var lg =  {
             return d
         };
 
-        this._colorAccessor = function(d,i,max){
+/*         this._colorAccessor = function(d,i,max){
             var c = Math.floor(d/max*5);
             if(c==5){c=4}
             return c
+        }; */
+        this._colorAccessor = function(d,i,min,max){
+            var c = Math.floor((d-min)/(max-min)*5);
+            if(c==5){c=4}
+            return c
         };
-
+		
         this._labelAccessor = function(d,i){
             if(isNaN(d) || d==null || d===''){
                 return d;
@@ -476,6 +489,10 @@ var lg =  {
                 var max = d3.max(newData,function(d){
                     return Number(v._valueAccessor(d.value));
                 })
+				
+				var min = d3.min(newData,function(d){
+                    return Number(v._valueAccessor(d.value));
+                })
 
                 g.selectAll("rect")
                     .data(newData)
@@ -495,7 +512,7 @@ var lg =  {
                         if(v._valueAccessor(d.value)==null||isNaN(v._valueAccessor(d.value)) || v._valueAccessor(d.value)===''){
                             return '#cccccc';
                         }                        
-                        var c = v._colorAccessor(d.value,i2,max)
+                        var c = v._colorAccessor(d.value,i2,min,max)
                         return v._colors[c];
                     });                 
 

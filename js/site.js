@@ -1,5 +1,5 @@
 function generateDashboard(data,geom){
-    var map = new lg.map('#map').geojson(geom).nameAttr('Mun_Name').joinAttr('Mun_Code').zoom(8).center([17.5,121.2]);
+    var map = new lg.map('#map').geojson(geom).nameAttr('Mun_Name').joinAttr('Mun_Code').zoom(8).center([17.5,121.3]);
 
     var priority = new lg.column('#indicator+priority')
                         .label('Priority Index')
@@ -34,17 +34,18 @@ function generateDashboard(data,geom){
                         })
 						;
 						
-    var poverty = new lg.column("#indicator+poverty").label("Poverty incidence").axisLabels(false);
+    var housetotaldamage = new lg.column("#indicator+housedamagetotal").label("Totally Damged Houses").axisLabels(false);  
+    var housedamage = new lg.column("#indicator+housedamage").label("All Damaged Houses").axisLabels(false);     
+	var poverty = new lg.column("#indicator+poverty").label("Poverty incidence").axisLabels(false);
+    var incomeclass = new lg.column("#indicator+incomeclass").label("Income class").axisLabels(false).colorAccessor(function(d,i,max){return +d-1;});
+    var hhs4P = new lg.column("#indicator+p4hhs").label("Percentage of HHs under 4P").axisLabels(false);
     var walltype = new lg.column("#indicator+walltype").label("Wall made (partially) of concrete").axisLabels(false);
 	var rooftype = new lg.column("#indicator+rooftype").label("Roof made of alu/iron/concrete").axisLabels(false);
-    var hhs4P = new lg.column("#indicator+p4hhs").label("Percentage of HHs under 4P").axisLabels(false);
-    var incomeclass = new lg.column("#indicator+incomeclass").label("Income class").axisLabels(false).colorAccessor(function(d,i,max){return +d-1;});
     var hospitaldensity = new lg.column("#indicator+hospitaldensity").label("Avg. pop. per health facility").axisLabels(false);
-    var population = new lg.column("#indicator+population").label("Population").axisLabels(false);
-	var housetotaldamage = new lg.column("#indicator+housedamagetotal").label("Houses damaged totally").axisLabels(false);  
-    var housedamage = new lg.column("#indicator+housedamage").label("Houses damaged (total+partial)").axisLabels(false);         
+    var householdsize = new lg.column("#indicator+hhsize").label("Avg. household size").axisLabels(false);
+    var population = new lg.column("#indicator+population").label("Population 2015").axisLabels(false);  
+    var barangays = new lg.column("#indicator+nrbarangays").label("# Barangays").axisLabels(false);      
 	    
-
     var grid1 = new lg.grid('#grid1')
         .data(data)
         .width($('#grid1').width())
@@ -54,13 +55,13 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-        .columns([priority,vulnerability,severity,housetotaldamage,housedamage,poverty,walltype,rooftype,hhs4P,incomeclass,hospitaldensity,population])
+        .columns([priority,vulnerability,severity,housetotaldamage,housedamage,poverty,incomeclass,hhs4P,walltype,rooftype,hospitaldensity,householdsize,population,barangays])
 		;            
 
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
-
-    lg.init();
-
+	
+	lg.init();
+	
     $("#map").width($("#map").width());
 
     var g = d3.select('#grid1').select('svg').select('g').append('g');
@@ -74,7 +75,7 @@ function generateDashboard(data,geom){
 
     g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*3)
                     .attr("y1", -220)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*12)
+                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*14)
                     .attr("y2", -220)
                     .attr("stroke-width", 1)
                     .attr("stroke", "black");
@@ -100,9 +101,9 @@ function generateDashboard(data,geom){
                     .attr("stroke-width", 1)
                     .attr("stroke", "black");
 
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*12)
+    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*14)
                     .attr("y1", -220)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*12)
+                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*14)
                     .attr("y2", -215)
                     .attr("stroke-width", 1)
                     .attr("stroke", "black");
@@ -113,7 +114,7 @@ function generateDashboard(data,geom){
                     .style("text-anchor", "middle")
                     .attr("font-size",10);
 
-    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*7.5)
+    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*8.5)
                     .attr('y', -225)
                     .text('Reported data')
                     .style("text-anchor", "middle")
@@ -185,4 +186,14 @@ $.when(dataCall, geomCall).then(function(dataArgs,geomArgs){
     geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
     overview = hxlProxyToJSON(dataArgs[0],false);
     generateDashboard(overview,geom);
+	// $(document).ready(function() {
+		// var event = document.createEvent("SVGEvents");
+		// var el = document.getElementsByClassName("sortLabel0id0")[0];
+		// event.initEvent("mouseover",true,true);
+		// el.dispatchEvent(event);
+		// event.initEvent("click",true,true);
+		// el.dispatchEvent(event);
+		// event.initEvent("mouseout",true,true);
+		// el.dispatchEvent(event);
+	// });
 });
