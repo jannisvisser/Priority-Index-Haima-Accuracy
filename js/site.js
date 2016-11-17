@@ -55,7 +55,7 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-        .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,incomeclass,population,householdsize,walltype,rooftype,barangays])
+        .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
 		;            
 
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
@@ -83,7 +83,7 @@ function generateDashboard(data,geom){
 	//Add the number of variables per group
 	var group1 = 3;
 	var group2 = 2;
-	var group3 = 3;
+	var group3 = 2;
 	var group4 = 5;
 	var offset_hor = 0;
 	var offset_vert = -30;
@@ -194,21 +194,21 @@ function generateDashboard(data,geom){
 	//horizontal text 2
     g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2/2)+offset_hor)
                     .attr('y', (offset_vert+15))
-                    .text('Severity data')
+                    .text('Severity')
                     .style("text-anchor", "middle")
                     .attr("font-size",12);              
 
 	//horizontal text 3
     g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3/2)+offset_hor)
                     .attr('y', (offset_vert+15))
-                    .text('Vulnerability data')
+                    .text('Vulnerability')
                     .style("text-anchor", "middle")
                     .attr("font-size",12);              
 
 	//horizontal text 4
     g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4/2)+offset_hor)
                     .attr('y', (offset_vert+15))
-                    .text('Demographics data')
+                    .text('Demographics')
                     .style("text-anchor", "middle")
                     .attr("font-size",12);                                                                                                                                   
 }
