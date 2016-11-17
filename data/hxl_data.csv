@@ -1,19 +1,19 @@
-Region;Province;Muncode;Mun_city;Municipality;PRC_initial_selection;Number of Barangay;Population;Population_per_healthfacility;Household_size;"Roof_iron_alu_conc_perc
-";Wall_parly_concrete_perc;poverty_incidence;income_class;P4_perc;vulnerability_index;houses_totaldamage;houses_damage;severity_index;priority_index
-Cordillera Administrative Region (CAR);Apayao;PH148102000;Mun;Conner;1;21;26051;1861;5.4;93%;46%;56%;2;6%;4.8;3%;90%;2.1;3.4
-Cordillera Administrative Region (CAR);Apayao;PH148104000;Mun;Kabugao (Capital);1;21;15537;971;5.0;85%;36%;64%;1;8%;3.9;2%;38%;1.5;2.7
-Cordillera Administrative Region (CAR);Apayao;PH148105000;Mun;Luna;1;22;19063;2118;5.0;79%;61%;33%;2;6%;4.0;2%;95%;1.8;2.9
-Cordillera Administrative Region (CAR);Apayao;PH148107000;Mun;Santa Marcela;1;13;13613;1702;5.0;86%;65%;33%;4;6%;4.4;4%;43%;1.8;3.1
-Cordillera Administrative Region (CAR);Kalinga;PH143201000;Mun;Balbalan;1;14;12195;762;5.7;94%;23%;34%;3;8%;4.8;0%;5%;1.0;2.9
-Cordillera Administrative Region (CAR);Kalinga;PH143213000;City;City of Tabuk (Capital);1;42;110642;2354;5.4;100%;33%;9%;5;1%;1.8;1%;14%;1.2;1.5
-Cordillera Administrative Region (CAR);Kalinga;PH143209000;Mun;Pinukpuk;1;23;32026;1186;5.8;77%;57%;32%;1;3%;2.0;2%;23%;1.4;1.7
-Cordillera Administrative Region (CAR);Kalinga;PH143211000;Mun;Rizal (Liwan);1;14;17038;1549;5.0;92%;69%;9%;4;26%;4.3;14%;66%;2.9;3.6
-Region II (Cagayan Valley);Cagayan;PH021506000;Mun;Baggao;1;48;82782;3942;4.6;95%;57%;22%;1;3%;2.6;5%;31%;1.7;2.2
-Region II (Cagayan Valley);Cagayan;PH021512000;Mun;Enrile;1;22;35834;1991;5.3;83%;71%;20%;3;3%;2.7;21%;100%;4.0;3.3
-Region II (Cagayan Valley);Cagayan;PH021517000;Mun;Lasam;1;30;39135;4348;4.5;97%;66%;14%;3;3%;3.0;2%;29%;1.5;2.2
-Region II (Cagayan Valley);Cagayan;PH021519000;Mun;Penablanca;1;24;48584;1943;5.3;89%;63%;20%;1;3%;1.8;11%;87%;3.0;2.4
-Region II (Cagayan Valley);Cagayan;PH021529000;City;Tuguegarao City (Capital);1;49;153502;3744;5.2;97%;87%;9%;3;1%;1.0;22%;78%;3.7;2.4
-Region II (Cagayan Valley);Isabela;PH023118000;Mun;Delfin Albano (Magsaysay);1;29;26614;2957;4.5;54%;14%;16%;4;1%;4.7;14%;78%;3.1;3.9
-Region II (Cagayan Valley);Isabela;PH023133000;Mun;San Pablo;1;17;25384;2115;5.7;74%;61%;24%;2;5%;3.6;13%;67%;2.9;3.3
-Region II (Cagayan Valley);Isabela;PH023134000;Mun;Santa Maria;1;20;25382;2820;6.0;95%;80%;31%;4;7%;5.0;26%;100%;4.3;4.7
-Region II (Cagayan Valley);Isabela;PH023136000;Mun;Santo Tomas;1;27;23005;5751;5.0;94%;70%;23%;4;4%;4.7;38%;97%;5.0;4.8
+Province;Mun_City Code;Municipal_City;PRC_initial_selection;Number of Barangay;Population; Household_size ;" Roof_iron_alu_conc_perc
+ "; Wall_parly_concrete_perc ; P4_perc  ; poverty ;income_class; vulnerability_index ; houses_totaldamage ; houses_damage ; severity_index ; priority_index 
+Apayao;PH148102000;Conner;1;21;26051; 5.4 ; 0.93 ; 0.46 ; 0.06 ; 0.56 ;2; 4.7 ; 0.03 ; 0.89 ; 2.2 ; 3.5 
+Apayao;PH148104000;Kabugao (Capital);1;21;15537; 5.0 ; 0.85 ; 0.36 ; 0.08 ; 0.64 ;1; 4.2 ; 0.03 ; 0.41 ; 1.6 ; 2.9 
+Apayao;PH148105000;Luna;1;22;19063; 5.0 ; 0.79 ; 0.61 ; 0.06 ; 0.33 ;2; 3.9 ; 0.02 ; 0.95 ; 1.8 ; 2.8 
+Apayao;PH148107000;Santa Marcela;1;13;13613; 5.0 ; 0.86 ; 0.65 ; 0.06 ; 0.33 ;4; 5.0 ; 0.04 ; 0.43 ; 1.8 ; 3.4 
+Cagayan;PH021506000;Baggao;1;48;82782; 4.6 ; 0.95 ; 0.57 ; 0.03 ; 0.22 ;1; 2.0 ; 0.05 ; 0.24 ; 1.6 ; 1.8 
+Cagayan;PH021512000;Enrile;1;22;35834; 5.3 ; 0.83 ; 0.71 ; 0.03 ; 0.20 ;3; 2.6 ; 0.20 ; 1.00 ; 4.5 ; 3.6 
+Cagayan;PH021517000;Lasam;1;30;39135; 4.5 ; 0.97 ; 0.66 ; 0.03 ; 0.14 ;3; 2.3 ; 0.02 ; 0.33 ; 1.4 ; 1.9 
+Cagayan;PH021519000;Peñablanca;1;24;48584; 5.3 ; 0.89 ; 0.63 ; 0.03 ; 0.20 ;1; 1.7 ; 0.11 ; 0.87 ; 3.4 ; 2.5 
+Cagayan;PH021529000;Tuguegarao City (Capital);1;49;153502; 5.2 ; 0.97 ; 0.87 ; 0.01 ; 0.09 ;3; 1.0 ; 0.22 ; 0.78 ; 4.2 ; 2.6 
+Isabela;PH023118000;Delfin Albano (Magsaysay);1;29;26614; 4.5 ; 0.88 ; 0.75 ; 0.03 ; 0.16 ;4; 3.0 ; 0.21 ; 0.79 ; 4.2 ; 3.6 
+Isabela;PH023133000;San Pablo;1;17;25384; 5.7 ; 0.92 ; 0.79 ; 0.05 ; 0.24 ;2; 3.2 ; 0.04 ; 0.37 ; 1.7 ; 2.5 
+Isabela;PH023134000;Santa Maria;1;20;25382; 6.0 ; 0.74 ; 0.61 ; 0.05 ; 0.31 ;4; 4.5 ; 0.26 ; 1.00 ; 5.0 ; 4.7 
+Isabela;PH023136000;Santo Tomas;1;27;23005; 5.0 ; 0.94 ; 0.70 ; 0.04 ; 0.23 ;4; 3.6 ; 0.12 ; 0.47 ; 2.8 ; 3.2 
+Kalinga;PH143201000;Balbalan;1;14;12195; 5.7 ; 0.94 ; 0.23 ; 0.08 ; 0.34 ;3; 5.0 ; 0.01 ; 0.14 ; 1.0 ; 3.0 
+Kalinga;PH143213000;City of Tabuk (Capital);1;42;110642; 5.4 ; 0.92 ; 0.69 ; 0.04 ; 0.09 ;5; 2.8 ; 0.03 ; 0.28 ; 1.5 ; 2.2 
+Kalinga;PH143209000;Pinukpuk;1;23;32026; 5.8 ; 0.82 ; 0.34 ; 0.07 ; 0.32 ;1; 3.0 ; 0.06 ; 0.69 ; 2.5 ; 2.8 
+Kalinga;PH143211000;Rizal (Liwan);1;14;17038; 5.0 ; 0.77 ; 0.57 ; 0.05 ; 0.09 ;4; 2.8 ; 0.15 ; 0.71 ; 3.5 ; 3.2 
