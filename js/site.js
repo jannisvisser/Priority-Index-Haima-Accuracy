@@ -68,153 +68,204 @@ function generateDashboard(data,geom){
 
     $("#map").width($("#map").width());
 
-    //sort table and color map by priority after loading dashboard
-    var newdata = [];
-    data.forEach(function(d){
-        newdata.push({'key':d['#adm3+code'],'value':d['#indicator+priority']});
+    $('#all').on('click',function(){
+        lg._gridRegister = [];
+        $('#map-container').html('<div id="map"></div>');
+        $('#grid1').html('');
+        grid1 = new lg.grid('#grid1')
+            .data(data)
+            .width($('#grid1').width())
+            .height(2000)
+            .nameAttr('#adm3+name')
+            .joinAttr('#adm3+code')
+            .hWhiteSpace(4)
+            .vWhiteSpace(4)
+            .margins({top: 250, right: 20, bottom: 30, left: 200})
+            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+            ;    
+
+        lg.init();
+        initlayout(data);
+        $("#map").width($("#map").width());
     });
-    map.colorMap(newdata,priority);
-    grid1._update(data,grid1.columns(),priority,'#adm3+name');
 
-	
-	
-	//////////////////////////////////////////
-	//Create the category lines above the grid
-	//////////////////////////////////////////
+    $('#priority').on('click',function(){
+        
+        var newdata = data.filter(function(d){
+            return d['#indicator+preselection']==1;
+        });
+        lg._gridRegister = [];
+        $('#map-container').html('<div id="map"></div>');
+        $('#grid1').html('');
+        grid1 = new lg.grid('#grid1')
+            .data(newdata)
+            .width($('#grid1').width())
+            .height(600)
+            .nameAttr('#adm3+name')
+            .joinAttr('#adm3+code')
+            .hWhiteSpace(4)
+            .vWhiteSpace(4)
+            .margins({top: 250, right: 20, bottom: 30, left: 200})
+            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+            ;    
 
-    var g = d3.select('#grid1').select('svg').select('g').append('g');
+        lg.init();
+        initlayout(newdata);
+        $("#map").width($("#map").width());
+    });
 
-	//Add the number of variables per group
-	var group1 = 3;
-	var group2 = 4;
-	var group3 = 2;
-	var group4 = 5;
-	var offset_hor = 0;
-	var offset_vert = -30;
-	
-	//horizontal line 1
-    g.append('line').attr("x1", 0+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*group1+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
-                    .attr("y2", offset_vert)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    initlayout(data);
 
-	//horizontal line 2
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*group1+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
-                    .attr("y2", offset_vert)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    function initlayout(data){
 
-	//horizontal line 3
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
-                    .attr("y2", offset_vert)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+        //sort table and color map by priority after loading dashboard
+        var newdata = [];
+        data.forEach(function(d){
+            newdata.push({'key':d['#adm3+code'],'value':d['#indicator+priority']});
+        });
+        map.colorMap(newdata,priority);
+        grid1._update(data,grid1.columns(),priority,'#adm3+name');
 
-	//horizontal line 4
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
-                    .attr("y2", offset_vert)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	
+    	
+    	//////////////////////////////////////////
+    	//Create the category lines above the grid
+    	//////////////////////////////////////////
 
-	//vertical line 1.1
-    g.append('line').attr("x1", 0+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", 0+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+        var g = d3.select('#grid1').select('svg').select('g').append('g');
 
-	//vertical line 1.2
-    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1)+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1)+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//Add the number of variables per group
+    	var group1 = 3;
+    	var group2 = 4;
+    	var group3 = 2;
+    	var group4 = 5;
+    	var offset_hor = 0;
+    	var offset_vert = -30;
+    	
+    	//horizontal line 1
+        g.append('line').attr("x1", 0+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*group1+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
+                        .attr("y2", offset_vert)
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 2.1
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//horizontal line 2
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*group1+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
+                        .attr("y2", offset_vert)
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 2.2
-    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//horizontal line 3
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth)*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
+                        .attr("y2", offset_vert)
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 3.1
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//horizontal line 4
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
+                        .attr("y2", offset_vert)
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 3.2
-    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//vertical line 1.1
+        g.append('line').attr("x1", 0+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", 0+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 4.1
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//vertical line 1.2
+        g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1)+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1)+(lg._gridRegister[0]._hWhiteSpace)*(group1-1)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//vertical line 4.2
-    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
-                    .attr("y1", offset_vert)
-                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
-                    .attr("y2", (offset_vert-5))
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+    	//vertical line 2.1
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//horizontal text 1
-    g.append('text').attr('x', lg._gridRegister[0]._properties.boxWidth*(group1/2)+offset_hor)
-                    .attr('y', (offset_vert+15))
-                    .text('Predicted')
-                    .style("text-anchor", "middle")
-                    .attr("font-size",12);
+    	//vertical line 2.2
+        g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1+group2)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2-1)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//horizontal text 2
-    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2/2)+offset_hor)
-                    .attr('y', (offset_vert+15))
-                    .text('Severity')
-                    .style("text-anchor", "middle")
-                    .attr("font-size",12);              
+    	//vertical line 3.1
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//horizontal text 3
-    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3/2)+offset_hor)
-                    .attr('y', (offset_vert+15))
-                    .text('Vulnerability')
-                    .style("text-anchor", "middle")
-                    .attr("font-size",12);              
+    	//vertical line 3.2
+        g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", lg._gridRegister[0]._properties.boxWidth*(group1+group2+group3)+(lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3-1)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
 
-	//horizontal text 4
-    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4/2)+offset_hor)
-                    .attr('y', (offset_vert+15))
-                    .text('Demographics')
-                    .style("text-anchor", "middle")
-                    .attr("font-size",12);                                                                                                                                   
+    	//vertical line 4.1
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3)+offset_hor)
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
+
+    	//vertical line 4.2
+        g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
+                        .attr("y1", offset_vert)
+                        .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4))
+                        .attr("y2", (offset_vert-5))
+                        .attr("stroke-width", 1)
+                        .attr("stroke", "black");
+
+    	//horizontal text 1
+        g.append('text').attr('x', lg._gridRegister[0]._properties.boxWidth*(group1/2)+offset_hor)
+                        .attr('y', (offset_vert+15))
+                        .text('Predicted')
+                        .style("text-anchor", "middle")
+                        .attr("font-size",12);
+
+    	//horizontal text 2
+        g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2/2)+offset_hor)
+                        .attr('y', (offset_vert+15))
+                        .text('Severity')
+                        .style("text-anchor", "middle")
+                        .attr("font-size",12);              
+
+    	//horizontal text 3
+        g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3/2)+offset_hor)
+                        .attr('y', (offset_vert+15))
+                        .text('Vulnerability')
+                        .style("text-anchor", "middle")
+                        .attr("font-size",12);              
+
+    	//horizontal text 4
+        g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*(group1+group2+group3+group4/2)+offset_hor)
+                        .attr('y', (offset_vert+15))
+                        .text('Demographics')
+                        .style("text-anchor", "middle")
+                        .attr("font-size",12);
+    }                                                                                                                                   
 }
 
 function hxlProxyToJSON(input,headers){
