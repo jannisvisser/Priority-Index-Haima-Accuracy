@@ -33,9 +33,13 @@ function generateDashboard(data,geom){
                             return +Math.round(d)-1;
                         })
 						;
-						
+
+	var preselection = new lg.column("#indicator+preselection");  
+	
     var housetotaldamage = new lg.column("#indicator+housedamagetotal").label("Totally Damaged Houses").axisLabels(false);  
-    var housedamage = new lg.column("#indicator+housedamage").label("Damaged Houses (Tot + Part)").axisLabels(false);     
+    var housedamage = new lg.column("#indicator+housedamage").label("Damaged Houses").axisLabels(false);     
+    var pred_housedamage = new lg.column("#indicator+predictedhousedamage").label("Predicted Damaged Houses").axisLabels(false);  
+    var pred_severity = new lg.column("#indicator+predictedseverity").label("Predicted Severity Index").axisLabels(false);    
 	var poverty = new lg.column("#indicator+poverty").label("Poverty incidence").axisLabels(false);
     var incomeclass = new lg.column("#indicator+incomeclass").label("Income class").axisLabels(false).colorAccessor(function(d,i,max){return +d-1;});
     var hhs4P = new lg.column("#indicator+p4hhs").label("Percentage of HHs under 4P").axisLabels(false);
@@ -49,13 +53,13 @@ function generateDashboard(data,geom){
     var grid1 = new lg.grid('#grid1')
         .data(data)
         .width($('#grid1').width())
-        .height(650)
+        .height(2000)
         .nameAttr('#adm3+name')
         .joinAttr('#adm3+code')
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-        .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+        .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
 		;            
 
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
@@ -82,7 +86,7 @@ function generateDashboard(data,geom){
 
 	//Add the number of variables per group
 	var group1 = 3;
-	var group2 = 2;
+	var group2 = 4;
 	var group3 = 2;
 	var group4 = 5;
 	var offset_hor = 0;
