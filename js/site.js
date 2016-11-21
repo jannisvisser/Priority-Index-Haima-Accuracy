@@ -59,7 +59,7 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-        .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,walltype,population])
 		;            
 
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
@@ -77,7 +77,7 @@ function generateDashboard(data,geom){
             .hWhiteSpace(4)
             .vWhiteSpace(4)
             .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,walltype,population])
             ;    
 
         lg.init();
@@ -96,13 +96,13 @@ function generateDashboard(data,geom){
         grid1 = new lg.grid('#grid1')
             .data(newdata)
             .width($('#grid1').width())
-            .height(600)
+            .height(700)
             .nameAttr('#adm3+name')
             .joinAttr('#adm3+code')
             .hWhiteSpace(4)
             .vWhiteSpace(4)
             .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,pred_housedamage,pred_severity,poverty,hhs4P,population,householdsize,walltype,rooftype,barangays])
+            .columns([priority,severity,vulnerability,housetotaldamage,housedamage,poverty,hhs4P,walltype,population])
             ;    
 
         lg.init();
@@ -135,9 +135,9 @@ function generateDashboard(data,geom){
 
 		//Add the number of variables per group
 		var group1 = 3;
-		var group2 = 4;
-		var group3 = 2;
-		var group4 = 5;
+		var group2 = 2;
+		var group3 = 3;
+		var group4 = 1;
 		var offset_hor = 0;
 		var offset_vert = -30;
 		
@@ -240,7 +240,7 @@ function generateDashboard(data,geom){
 		//horizontal text 1
 		g.append('text').attr('x', lg._gridRegister[0]._properties.boxWidth*(group1/2)+offset_hor)
 						.attr('y', (offset_vert+15))
-						.text('Predicted')
+						.text('Priority indices')
 						.style("text-anchor", "middle")
 						.attr("font-size",12);
 
