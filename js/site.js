@@ -15,12 +15,18 @@ function generateDashboard(data,geom){
     var pred_abs_category = new lg.column("#prediction+abs_category").label("Predicted damage category (on abs. damages)").axisLabels(false);  
     var pred_abs_damages = new lg.column("#prediction+abs_damage").label("Predicted # Damaged Houses").axisLabels(false);     
     var pred_perc_damages = new lg.column("#prediction+perc_damage").label("Predicted % of Damaged Houses").axisLabels(false);  
+    var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Predicted weighted sum (#)").axisLabels(false);   
+    var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Predicted weighted sum (%)").axisLabels(false);  
     var actual_abs_damages = new lg.column("#actual+abs_damage").label("Actual # Damaged Houses");   
 	var actual_perc_damages = new lg.column("#actual+perc_damage").label("Actual % of Damaged Houses").axisLabels(false);
+    var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Actual weighted sum (#)").axisLabels(false);   
+    var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Actual weighted sum (%)").axisLabels(false);  
     var diff_abs = new lg.column("#diff+abs").label("Prediction error abs. # of houses").axisLabels(false);
     var diff_perc = new lg.column("#diff+perc").label("Prediction error abs. % of houses").axisLabels(false);
     var diff_gap = new lg.column("#diff+gap").label("Prediction error %").axisLabels(false);
     var diff_category = new lg.column("#diff+category").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+    var diff_gap_new = new lg.column("#diff+gap_new").label("Prediction error % (weighted sum)").axisLabels(false);
+    var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category (weighted sum)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
 	    
     var grid1 = new lg.grid('#grid1')
         .data(data)
@@ -31,59 +37,11 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_abs,diff_perc,diff_gap,diff_category])
+            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,pred_abs_weightedsum,pred_perc_weightedsum,actual_abs_damages,actual_perc_damages,actual_abs_weightedsum,actual_perc_weightedsum,diff_abs,diff_perc,diff_gap,diff_category,diff_gap_new,diff_category_new])
 		;            
 
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
 	
-
-	
-/*     $('#all').on('click',function(){
-        lg._gridRegister = [];
-        $('#map-container').html('<div id="map"></div>');
-        $('#grid1').html('');
-        grid1 = new lg.grid('#grid1')
-            .data(data)
-            .width($('#grid1').width())
-            .height(10000)
-            .nameAttr('#adm3+name')
-            .joinAttr('#adm3+code')
-            .hWhiteSpace(4)
-            .vWhiteSpace(4)
-            .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_severity,pred_housedamage,housedamage,housetotaldamage])
-            ;    
-
-        lg.init();
-        initlayout(data);
-        $("#map").width($("#map").width());
-    });
-
-    $('#priority').on('click',function(){
-        
-        var newdata = data.filter(function(d){
-            return d['#indicator+preselection']==1;
-        });
-        lg._gridRegister = [];
-        $('#map-container').html('<div id="map"></div>');
-        $('#grid1').html('');
-        grid1 = new lg.grid('#grid1')
-            .data(newdata)
-            .width($('#grid1').width())
-            .height(700)
-            .nameAttr('#adm3+name')
-            .joinAttr('#adm3+code')
-            .hWhiteSpace(4)
-            .vWhiteSpace(4)
-            .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_severity,pred_housedamage,housedamage,housetotaldamage])
-            ;    
-
-        lg.init();
-        initlayout(newdata);
-        $("#map").width($("#map").width());
-    }); */
-
 
 	lg.init();
     initlayout(data);
@@ -94,10 +52,10 @@ function generateDashboard(data,geom){
         //sort table and color map by priority after loading dashboard
         var newdata = [];
         data.forEach(function(d){
-            newdata.push({'key':d['#adm3+code'],'value':d['#diff+category']});
+            newdata.push({'key':d['#adm3+code'],'value':d['#diff+category_new']});
         });
-        map.colorMap(newdata,diff_category);
-        grid1._update(data,grid1.columns(),diff_category,'#adm3+name');
+        map.colorMap(newdata,diff_category_new);
+        grid1._update(data,grid1.columns(),diff_category_new,'#adm3+name');
 
 
     	
@@ -108,9 +66,9 @@ function generateDashboard(data,geom){
 		var g = d3.select('#grid1').select('svg').select('g').append('g');
 
 		//Add the number of variables per group
-		var group1 = 3;
-		var group2 = 2;
-		var group3 = 4;
+		var group1 = 5;
+		var group2 = 4;
+		var group3 = 6;
 		var group4 = 0;
 		var offset_hor = 0;
 		var offset_vert = -30;
