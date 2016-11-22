@@ -304,6 +304,8 @@ var lg =  {
         this._labelAccessor = function(d,i){
             if(isNaN(d) || d==null || d===''){
                 return d;
+            } else if (d > 0 && d <= 1) {                    
+                return d3.format('0,0%')(d);
             } else {                    
                 return d3.format('0,000')(d);
             }
