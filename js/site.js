@@ -12,22 +12,33 @@ function generateDashboard(data,geom){
                         })
 						; */
 	
-    var pred_abs_category = new lg.column("#prediction+abs_category").label("Predicted damage category (on abs. damages)").axisLabels(false);  
-    var pred_abs_damages = new lg.column("#prediction+abs_damage").label("Predicted # Damaged Houses").axisLabels(false);     
-    var pred_perc_damages = new lg.column("#prediction+perc_damage").label("Predicted % of Damaged Houses").axisLabels(false);  
-    var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Predicted weighted sum (#)").axisLabels(false);   
-    var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Predicted weighted sum (%)").axisLabels(false);  
-    var actual_abs_damages = new lg.column("#actual+abs_damage").label("Actual # Damaged Houses");   
-	var actual_perc_damages = new lg.column("#actual+perc_damage").label("Actual % of Damaged Houses").axisLabels(false);
-    var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Actual weighted sum (#)").axisLabels(false);   
-    var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Actual weighted sum (%)").axisLabels(false);  
-    var diff_abs = new lg.column("#diff+abs").label("Prediction error abs. # of houses").axisLabels(false);
-    var diff_perc = new lg.column("#diff+perc").label("Prediction error abs. % of houses").axisLabels(false);
-    var diff_gap = new lg.column("#diff+gap").label("Prediction error %").axisLabels(false);
+    var pred_abs_category = new lg.column("#prediction+abs_category").label("Priority Index Categories").axisLabels(false);  
+    var pred_abs_damages = new lg.column("#prediction+abs_damage").label("Damaged Houses (#)").axisLabels(false);     
+    var pred_perc_damages = new lg.column("#prediction+perc_damage").label("Damaged Houses (% of HHs)").axisLabels(false);  
+	
+	var pred_cat_weightedsum = new lg.column("#prediction+category_new").label("Priority Index Categories").axisLabels(false);
+    var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Weighted sum (#)").axisLabels(false);   
+    var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Weighted sum (% of HHs)").axisLabels(false);  
+    
+	var actual_abs_damages = new lg.column("#actual+abs_damage").label("Damaged Houses (#)");   
+	var actual_perc_damages = new lg.column("#actual+perc_damage").label("Damaged Houses (% of HHs)").axisLabels(false);
+    var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Weighted Sum (#)").axisLabels(false);   
+    var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Weighted Sum (% of HHs)").axisLabels(false);  
+    
+	var diff_perc = new lg.column("#diff+perc").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+    var diff_gap = new lg.column("#diff+gap").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
     var diff_category = new lg.column("#diff+category").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-    var diff_gap_new = new lg.column("#diff+gap_new").label("Prediction error % (weighted sum)").axisLabels(false);
-    var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category (weighted sum)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-	    
+    var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+	var diff_gap_new = new lg.column("#diff+gap_new").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+    var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+
+    lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);	
+	
+	var group1 = 3;
+	var group2 = 2;
+	var group3 = 3;
+	var group4 = 0;
+
     var grid1 = new lg.grid('#grid1')
         .data(data)
         .width($('#grid1').width())
@@ -37,25 +48,70 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,pred_abs_weightedsum,pred_perc_weightedsum,actual_abs_damages,actual_perc_damages,actual_abs_weightedsum,actual_perc_weightedsum,diff_abs,diff_perc,diff_gap,diff_category,diff_gap_new,diff_category_new])
-		;            
+         .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc,diff_gap,diff_category])
+		;
 
-    lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);
+	$('#run1').on('click',function(){
+        lg._gridRegister = [];
+		$('#run2').css({'background-color': 'grey' });
+		$('#run1').css({'background-color': '#BF002D' });
+        $('#map-container').html('<div id="map"></div>');
+        $('#grid1').html('');
+        grid1 = new lg.grid('#grid1')
+            .data(data)
+            .width($('#grid1').width())
+            .height(5000)
+            .nameAttr('#adm3+name')
+            .joinAttr('#adm3+code')
+            .hWhiteSpace(4)
+            .vWhiteSpace(4)
+            .margins({top: 250, right: 20, bottom: 30, left: 200})
+            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc,diff_gap,diff_category])
+            ;    
+		
+		lg.init();
+        initlayout(data,diff_category,'#diff+category');
+        $("#map").width($("#map").width());
+    });
+
+    $('#run2').on('click',function(){
+        lg._gridRegister = [];
+		$('#run1').css({'background-color': 'grey' });
+		$('#run2').css({'background-color': '#BF002D' });
+        $('#map-container').html('<div id="map"></div>');
+        $('#grid1').html('');
+        grid1 = new lg.grid('#grid1')
+            .data(data)
+            .width($('#grid1').width())
+            .height(5000)
+            .nameAttr('#adm3+name')
+            .joinAttr('#adm3+code')
+            .hWhiteSpace(4)
+            .vWhiteSpace(4)
+            .margins({top: 250, right: 20, bottom: 30, left: 200})
+            .columns([pred_cat_weightedsum,pred_abs_weightedsum,pred_perc_weightedsum,actual_abs_weightedsum,actual_perc_weightedsum,diff_perc_new,diff_gap_new,diff_category_new])
+            ;    
+		
+		lg.init();
+        initlayout(data,diff_category_new,'#diff+category_new');
+        $("#map").width($("#map").width());
+    });
 	
-
+	
+		
 	lg.init();
-    initlayout(data);
+    initlayout(data,diff_category,'#diff+category');
     $("#map").width($("#map").width());	
 
-    function initlayout(data){
+    function initlayout(data,sort_indicator1,sort_indicator2){
 
         //sort table and color map by priority after loading dashboard
         var newdata = [];
         data.forEach(function(d){
-            newdata.push({'key':d['#adm3+code'],'value':d['#diff+category_new']});
+            newdata.push({'key':d['#adm3+code'],'value':d[sort_indicator2]});
         });
-        map.colorMap(newdata,diff_category_new);
-        grid1._update(data,grid1.columns(),diff_category_new,'#adm3+name');
+        map.colorMap(newdata,sort_indicator1);
+        grid1._update(data,grid1.columns(),sort_indicator1,'#adm3+name');
 
 
     	
@@ -66,10 +122,6 @@ function generateDashboard(data,geom){
 		var g = d3.select('#grid1').select('svg').select('g').append('g');
 
 		//Add the number of variables per group
-		var group1 = 5;
-		var group2 = 4;
-		var group3 = 6;
-		var group4 = 0;
 		var offset_hor = 0;
 		var offset_vert = -30;
 		

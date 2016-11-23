@@ -24,7 +24,12 @@
 						<h1>Priority Index - Typhoon Haima - Gap analysis</h1>
 					</div>
 				</div>
-                <p class="titledesc">This dashboard lets the user compare predicted house damages per municipality with actual (latest available DROMIC) number of house damages. </br> Note that in the last column - the prediction error - category, BLUE means 'Actual higher than Prediciton', while RED means 'Actual lower than Prediction'</p>
+                <p class="titledesc">
+				This dashboard lets the user compare predicted house damages per municipality with actual (latest available DROMIC) number of house damages. 
+				</br> Note that in the last column - the prediction error - category, BLUE means 'Actual higher than Prediciton', while RED means 'Actual lower than Prediction'</p>
+				<ul>
+					<li><b>Run 1:</b>One day after Typhoon Haima made landfall the 1st Run was published. The model predicted # of Damaged Houses (Total+Partial) and priority categories followed directly.</li>
+					<li><b>Run 2:</b>Improvements since have led to a 2nd model. For one, it predicts not Total+Partial together, but instead predicts a weighted sum of two (Total + (0.25)*Partial), as this is a fairer reflection of severity, giving more weight to Totally Damaged Houses. Second, the predicted figure was made relative to the # of HH's in the municipality. Hereby, priority areas are those were a high % of houses was damaged, instead of simply a high # of houses (which favours larger municipalities just by their population size.</li>
             </div>
         </div>
         <div class="row">           
@@ -33,7 +38,9 @@
                 <div id="map-container"><div id="map"></div></div>
             </div>
             <div class="col-md-8">
-				<div id="grid1"></div>
+                <button style="background-color: #BF002D" class="btn btn-primary btn-sm" id="run1">1st Run (Oct. 20)</button>
+				<button style="background-color: grey" class="btn btn-primary btn-sm" id="run2">2nd Run (Nov 21)</button>
+                <div id="grid1"></div>
             </div>
         </div>
         </div>
