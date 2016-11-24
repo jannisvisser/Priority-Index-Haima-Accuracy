@@ -25,12 +25,16 @@ function generateDashboard(data,geom){
     var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Weighted Sum (#)").axisLabels(false);   
     var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Weighted Sum (% of HHs)").axisLabels(false);  
     
-	var diff_perc = new lg.column("#diff+perc").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
-    var diff_gap = new lg.column("#diff+gap").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-    var diff_category = new lg.column("#diff+category").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-    var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
-	var diff_gap_new = new lg.column("#diff+gap_new").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-    var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+	var diff_perc = new lg.column("#diff+perc").label("%-point difference").axisLabels(false)
+		.colorAccessor(function(d){ if (d>0.2) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.2) {return 1;} else if (d<-0.2) {return 0;}})
+		.colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
+//  var diff_gap = new lg.column("#diff+gap").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+//  var diff_category = new lg.column("#diff+category").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+    var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference").axisLabels(false)
+		.colorAccessor(function(d){ if (d>0.20) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.20) {return 1;} else if (d<-0.20) {return 0;}})
+		.colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
+//	var diff_gap_new = new lg.column("#diff+gap_new").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+//  var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
 	
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);	
 	

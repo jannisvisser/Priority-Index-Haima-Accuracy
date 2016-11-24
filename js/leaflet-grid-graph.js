@@ -290,11 +290,7 @@ var lg =  {
             return d
         };
 
-/*         this._colorAccessor = function(d,i,max){
-            var c = Math.floor(d/max*5);
-            if(c==5){c=4}
-            return c
-        }; */
+
         this._colorAccessor = function(d,i,min,max){
             var c = Math.floor((d-min)/(max-min)*5);
             if(c==5){c=4}
