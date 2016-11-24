@@ -416,12 +416,13 @@ var lg =  {
             columns.forEach(function(c){
                 if(typeof c === 'string'){ 
                     var column = new lg.column(c);
-                    column.domain([0, d3.max(parent._data,function(d){return Number(d[column._dataName]);})]);
+                    //column.domain([0, d3.max(parent._data,function(d){return Number(d[column._dataName]);})]);
+                    column.domain([d3.min(parent._data,function(d){return Number(d[column._dataName]);}), d3.max(parent._data,function(d){return Number(d[column._dataName]);})]);
                     column._colors = lg._colors;                  
                     newColumns.push(column);
                 } else {
                     if(c._domain=='default'){
-                        c.domain([0, d3.max(parent._data,function(d){return Number(d[c._dataName]);})]);
+                        c.domain([d3.min(parent._data,function(d){return Number(d[c._dataName]);}), d3.max(parent._data,function(d){return Number(d[c._dataName]);})]);
                     }
                     if(c._colors=='default'){
                         c._colors = lg._colors;
