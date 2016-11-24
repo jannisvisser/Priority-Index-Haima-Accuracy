@@ -12,11 +12,11 @@ function generateDashboard(data,geom){
                         })
 						; */
 	
-    var pred_abs_category = new lg.column("#prediction+abs_category").label("Priority Index Categories").axisLabels(false);  
+    var pred_abs_category = new lg.column("#prediction+abs_category").label("Priority Index Categories (based on #)").axisLabels(false);  
     var pred_abs_damages = new lg.column("#prediction+abs_damage").label("Damaged Houses (#)").axisLabels(false);     
     var pred_perc_damages = new lg.column("#prediction+perc_damage").label("Damaged Houses (% of HHs)").axisLabels(false);  
 	
-	var pred_cat_weightedsum = new lg.column("#prediction+category_new").label("Priority Index Categories").axisLabels(false);
+	var pred_cat_weightedsum = new lg.column("#prediction+category_new").label("Priority Index Categories (based on %)").axisLabels(false);
     var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Weighted sum (#)").axisLabels(false);   
     var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Weighted sum (% of HHs)").axisLabels(false);  
     
@@ -25,18 +25,18 @@ function generateDashboard(data,geom){
     var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Weighted Sum (#)").axisLabels(false);   
     var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Weighted Sum (% of HHs)").axisLabels(false);  
     
-	var diff_perc = new lg.column("#diff+perc").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+	var diff_perc = new lg.column("#diff+perc").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
     var diff_gap = new lg.column("#diff+gap").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
     var diff_category = new lg.column("#diff+category").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-    var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
+    var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference  (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
 	var diff_gap_new = new lg.column("#diff+gap_new").label("% difference (Actual vs. Predicted)").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
     var diff_category_new = new lg.column("#diff+category_new").label("Prediction error % category").axisLabels(false).colors(['#d7191c','#fdae61','#ffffbf','#abd9e9','#2c7bb6']);
-
+	
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);	
 	
 	var group1 = 3;
 	var group2 = 2;
-	var group3 = 3;
+	var group3 = 1;
 	var group4 = 0;
 
     var grid1 = new lg.grid('#grid1')
@@ -48,7 +48,7 @@ function generateDashboard(data,geom){
         .hWhiteSpace(4)
         .vWhiteSpace(4)
         .margins({top: 250, right: 20, bottom: 30, left: 200})
-         .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc,diff_gap,diff_category])
+         .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc])
 		;
 
 	$('#run1').on('click',function(){
@@ -66,11 +66,11 @@ function generateDashboard(data,geom){
             .hWhiteSpace(4)
             .vWhiteSpace(4)
             .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc,diff_gap,diff_category])
+            .columns([pred_abs_category,pred_abs_damages,pred_perc_damages,actual_abs_damages,actual_perc_damages,diff_perc])
             ;    
 		
 		lg.init();
-        initlayout(data,diff_category,'#diff+category');
+        initlayout(data,diff_perc,'#diff+perc');
         $("#map").width($("#map").width());
     });
 
@@ -89,18 +89,18 @@ function generateDashboard(data,geom){
             .hWhiteSpace(4)
             .vWhiteSpace(4)
             .margins({top: 250, right: 20, bottom: 30, left: 200})
-            .columns([pred_cat_weightedsum,pred_abs_weightedsum,pred_perc_weightedsum,actual_abs_weightedsum,actual_perc_weightedsum,diff_perc_new,diff_gap_new,diff_category_new])
+            .columns([pred_cat_weightedsum,pred_abs_weightedsum,pred_perc_weightedsum,actual_abs_weightedsum,actual_perc_weightedsum,diff_perc_new])
             ;    
 		
 		lg.init();
-        initlayout(data,diff_category_new,'#diff+category_new');
+        initlayout(data,diff_perc_new,'#diff+perc_new');
         $("#map").width($("#map").width());
     });
 	
 	
 		
 	lg.init();
-    initlayout(data,diff_category,'#diff+category');
+    initlayout(data,diff_perc,'#diff+perc');
     $("#map").width($("#map").width());	
 
     function initlayout(data,sort_indicator1,sort_indicator2){

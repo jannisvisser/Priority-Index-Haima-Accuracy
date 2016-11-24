@@ -149,7 +149,7 @@ var lg =  {
 
             function onEachFeature(feature, layer) {
                 layer.on("mouseover",function(f,l){
-                    _parent._info.update(f.target.feature.properties[_parent._nameAttr] + ' - ' + findCurrentData(f.target.feature.properties[_parent._joinAttr]));
+                    _parent._info.update(f.target.feature.properties[_parent._nameAttr] + ': ' + findCurrentData(f.target.feature.properties[_parent._joinAttr]));
                 });
 
                 layer.on("mouseout",function(f,l){

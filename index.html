@@ -26,7 +26,7 @@
 				</div>
                 <p class="titledesc">
 				This dashboard lets the user compare predicted house damages per municipality with actual (latest available DROMIC) number of house damages. 
-				</br> Note that in the last column - the prediction error - category, BLUE means 'Actual higher than Prediciton', while RED means 'Actual lower than Prediction'</p>
+				</br> Note that in the last column - the prediction error - category, PURPLE means 'Actual higher than Prediction', while RED means 'Actual lower than Prediction'</p>
 				<ul>
 					<li><b>Run 1:</b>One day after Typhoon Haima made landfall the 1st Run was published. The model predicted # of Damaged Houses (Total+Partial) and priority categories followed directly.</li>
 					<li><b>Run 2:</b>Improvements since have led to a 2nd model. For one, it predicts not Total+Partial together, but instead predicts a weighted sum of two (Total + (0.25)*Partial), as this is a fairer reflection of severity, giving more weight to Totally Damaged Houses. Second, the predicted figure was made relative to the # of HH's in the municipality. Hereby, priority areas are those were a high % of houses was damaged, instead of simply a high # of houses (which favours larger municipalities just by their population size.</li>
@@ -34,7 +34,7 @@
         </div>
         <div class="row">           
             <div class="col-md-4">
-                <div id="sticky-anchor"></div>
+                <!--<div id="sticky-anchor"></div>-->
                 <div id="map-container"><div id="map"></div></div>
             </div>
             <div class="col-md-8">
