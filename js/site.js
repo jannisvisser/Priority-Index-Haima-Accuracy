@@ -16,10 +16,10 @@ function generateDashboard(data,geom){
     
 	var diff_perc = new lg.column("#diff+perc").label("%-point difference").axisLabels(false)
 		//.colorAccessor(function(d){ if (d>0.2) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.2) {return 1;} else if (d<-0.2) {return 0;}})
-		.colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
+		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
     var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference").axisLabels(false)
-		//.colorAccessor(function(d){ if (d>0.20) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.20) {return 1;} else if (d<-0.20) {return 0;}})
-		.colors(['#d7191c','#fdae61','#ffffbf','#b2abd2','#5e3c99']);
+		.colorAccessor(function(d){ if (d>0.10) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.10) {return 1;} else if (d<-0.10) {return 0;}})
+		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
 	
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);	
 	
