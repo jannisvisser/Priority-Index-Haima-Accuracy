@@ -5,27 +5,38 @@ function generateDashboard(data,geom){
     var pred_abs_damages = new lg.column("#prediction+abs_damage").label("Damaged Houses (#)").axisLabels(false);     
     var pred_perc_damages = new lg.column("#prediction+perc_damage").label("Damaged Houses (% of HHs)").axisLabels(false);  
 	
-	var pred_cat_weightedsum = new lg.column("#prediction+category_new").label("Priority Index Categories (based on %)").axisLabels(false);
-    var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Weighted sum (#)").axisLabels(false);   
-    var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Weighted sum (% of HHs)").axisLabels(false);  
+	var pred_cat_weightedsum = new lg.column("#prediction+category_new").label("Priority Index (based on %)").axisLabels(false);
+    var pred_abs_weightedsum = new lg.column("#prediction+weightedsum").label("Weighted sum (#)").axisLabels(false)
+		.colorAccessor(function(d){ if (d>2000) {return 4;} else if (d>1000) {return 3;} else if (d>=500) {return 2;} else if (d>=200) {return 1;} else if (d<200) {return 0;}});
+    var pred_perc_weightedsum = new lg.column("#prediction+perc_damage_new").label("Weighted sum (% of HHs)").axisLabels(false)
+		.colorAccessor(function(d){ if (d>0.2) {return 4;} else if (d>0.1) {return 3;} else if (d>=0.05) {return 2;} else if (d>=0.02) {return 1;} else if (d<0.02) {return 0;}});  
     
 	var actual_abs_damages = new lg.column("#actual+abs_damage").label("Damaged Houses (#)");   
 	var actual_perc_damages = new lg.column("#actual+perc_damage").label("Damaged Houses (% of HHs)").axisLabels(false);
-    var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Weighted Sum (#)").axisLabels(false);   
-    var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Weighted Sum (% of HHs)").axisLabels(false);  
+	
+    var actual_abs_weightedsum = new lg.column("#actual+weightedsum").label("Weighted Sum (#)").axisLabels(false) 
+		.colorAccessor(function(d){ if (d>2000) {return 4;} else if (d>1000) {return 3;} else if (d>=500) {return 2;} else if (d>=200) {return 1;} else if (d<200) {return 0;}});
+    var actual_perc_weightedsum = new lg.column("#actual+perc_damage_new").label("Weighted Sum (% of HHs)").axisLabels(false)
+		.colorAccessor(function(d){ if (d>0.2) {return 4;} else if (d>0.1) {return 3;} else if (d>=0.05) {return 2;} else if (d>=0.02) {return 1;} else if (d<0.02) {return 0;}});    
     
 	var diff_perc = new lg.column("#diff+perc").label("%-point difference").axisLabels(false)
 		//.colorAccessor(function(d){ if (d>0.2) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.2) {return 1;} else if (d<-0.2) {return 0;}})
 		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
+    var diff_gap = new lg.column("#diff+gap").label("% difference").axisLabels(false)
+		.colorAccessor(function(d){ if (d>.5) {return 4;} else if (d>0.2) {return 3;} else if (d>=-0.2) {return 2;} else if (d>=-0.5) {return 1;} else if (d<-0.5) {return 0;}})
+		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
     var diff_perc_new = new lg.column("#diff+perc_new").label("%-point difference").axisLabels(false)
 		.colorAccessor(function(d){ if (d>0.10) {return 4;} else if (d>0.05) {return 3;} else if (d>=-0.05) {return 2;} else if (d>=-0.10) {return 1;} else if (d<-0.10) {return 0;}})
 		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
-	
+    var diff_gap_new = new lg.column("#diff+gap_new").label("% difference").axisLabels(false)
+		.colorAccessor(function(d){ if (d>.5) {return 4;} else if (d>0.2) {return 3;} else if (d>=-0.2) {return 2;} else if (d>=-0.5) {return 1;} else if (d<-0.5) {return 0;}})
+		.colors(['#d7191c','#fdae61','#ffffbf','#DA70D6','#8B008B']);
+		
     lg.colors(["#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026"]);	
 	
 	var group1 = 3;
 	var group2 = 2;
-	var group3 = 1;
+	var group3 = 2;
 	var group4 = 0;
 
     var grid1 = new lg.grid('#grid1')

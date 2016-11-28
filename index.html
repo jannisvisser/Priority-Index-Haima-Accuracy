@@ -25,24 +25,28 @@
 					</div>
 				</div>
                 <p class="titledesc">
-				This dashboard lets the user compare predicted house damages per municipality with actual (latest available DROMIC) number of house damages. 
-				</br> Note that in the last column - the prediction error - category, PURPLE means 'Actual higher than Prediction', while RED means 'Actual lower than Prediction'</p>
+				This dashboard lets the user compare predicted house damages per municipality with actual (latest available DROMIC) number of house damages.
+ 				</br> The last column denotes whether there was overestimation or underestimation per municipality.
+				</br>
+				<button style="background-color: grey" class="btn btn-primary btn-sm" id="run1">1st Run (Oct. 20)</button>
+				<button style="background-color: #BF002D" class="btn btn-primary btn-sm" id="run2">2nd Run (Nov 21)</button>
 				<ul>
 					<li><b>Run 1:</b>One day after Typhoon Haima made landfall the 1st Run was published. The model predicted # of Damaged Houses (Total+Partial) and priority categories followed directly.</li>
 					<li><b>Run 2:</b>Improvements since have led to a 2nd model. For one, it predicts not Total+Partial together, but instead predicts a weighted sum of two (Total + (0.25)*Partial), as this is a fairer reflection of severity, giving more weight to Totally Damaged Houses. Second, the predicted figure was made relative to the # of HH's in the municipality. Hereby, priority areas are those were a high % of houses was damaged, instead of simply a high # of houses (which favours larger municipalities just by their population size.</li>
-            </div>
+				</ul>
+				
+			</div>
         </div>
         <div class="row">           
             <div class="col-md-4">
+				<button style="margin-bottom:10px;font-weight:bold;margin-right: 1px;background-color: #d7191c;cursor:default" class="btn btn-primary btn-sm">Overestimation</button>
+				<button style="margin-bottom:10px;font-weight:bold;margin-right: 1px;background-color: #ffffbf;cursor:default; color:black" class="btn btn-primary btn-sm">Good</button>
+				<button style="margin-bottom:10px;font-weight:bold;background-color: #8B008B;cursor:default" class="btn btn-primary btn-sm">Underestimation</button>
+				<br>
                 <!--<div id="sticky-anchor"></div>-->
-                <!-- <button style="background-color: #d7191c" class="btn btn-primary btn-sm">Too high</button>
-                <button style="background-color: #ffffbf; color:black" class="btn btn-primary btn-sm">Good</button>
-				<button style="background-color: #5e3c99" class="btn btn-primary btn-sm">Too low</button> -->
-                <div id="map-container"><div id="map"></div></div>
+                <div id="map-container" style="margin-bottom:20px;"><div id="map"></div></div>
             </div>
             <div class="col-md-8">
-                <button style="background-color: grey" class="btn btn-primary btn-sm" id="run1">1st Run (Oct. 20)</button>
-				<button style="background-color: #BF002D" class="btn btn-primary btn-sm" id="run2">2nd Run (Nov 21)</button>
                 <div id="grid1"></div>
             </div>
         </div>
